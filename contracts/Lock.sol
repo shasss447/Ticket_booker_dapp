@@ -5,30 +5,25 @@ pragma solidity ^0.8.9;
 // import "hardhat/console.sol";
 
 contract Lock {
-    uint public unlockTime;
     address payable public owner;
-
-    event Withdrawal(uint amount, uint when);
-
-    constructor(uint _unlockTime) payable {
-        require(
-            block.timestamp < _unlockTime,
-            "Unlock time should be in the future"
-        );
-
-        unlockTime = _unlockTime;
-        owner = payable(msg.sender);
+    uint public constant  seat_price= 2 ether;
+    uint seats_available;
+    constructor()private{
+        owner=msg.sender;
+        seats_available=200;  
     }
-
-    function withdraw() public {
-        // Uncomment this line, and the import of "hardhat/console.sol", to print a log in your terminal
-        // console.log("Unlock time is %o and block timestamp is %o", unlockTime, block.timestamp);
-
-        require(block.timestamp >= unlockTime, "You can't withdraw yet");
-        require(msg.sender == owner, "You aren't the owner");
-
-        emit Withdrawal(address(this).balance, block.timestamp);
-
-        owner.transfer(address(this).balance);
+    modifier onlyIfSeatsAvailable{
+         require(seats_available>0,'No seats available');
     }
+    modifier IsSufficientEthers(uint _price){
+        require(msg.value==_price,'proper amount not paid');
+    }
+    event  Booked(address _sender, uint _value)
+    function book() payable onlyIfSeatsAvailable IsSufficientEthers(seat_price) {
+       
+        owner.transfer(msg.value);
+        seats_available=seats_available-1;
+        emit Booked(msg.sender,msg.value)
+    }
+    
 }
