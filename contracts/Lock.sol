@@ -5,25 +5,42 @@ pragma solidity ^0.8.9;
 // import "hardhat/console.sol";
 
 contract Lock {
-    address payable public owner;
-    uint public constant  seat_price= 2 ether;
-    uint seats_available;
-    constructor()private{
-        owner=msg.sender;
-        seats_available=200;  
+    address payable public owner; //owner of the cinema hall
+    uint public constant  seat_price= 2 ether;//price of each seat
+    uint seats_available;//no. of seats available
+
+
+    constructor()
+    {
+        owner=payable(msg.sender);
+        seats_available=200;  //setting capacity of cinema hall
     }
-    modifier onlyIfSeatsAvailable{
+
+  // check whether seats are available or not
+    modifier onlyIfSeatsAvailable
+    {
          require(seats_available>0,'No seats available');
+         _;
     }
-    modifier IsSufficientEthers(uint _price){
+
+ // check whether right amount of ether is sent or not
+    modifier IsSufficientEthers(uint _price)
+    {
         require(msg.value==_price,'proper amount not paid');
+        _;
     }
-    event  Booked(address _sender, uint _value)
-    function book() payable onlyIfSeatsAvailable IsSufficientEthers(seat_price) {
+ // event to show the address and amount paid by the seat booker
+    event  Booked(address _sender, uint _value);
+
+
+// main function to book seat and do the payment
+    function book()public payable onlyIfSeatsAvailable IsSufficientEthers(seat_price) 
+    {
        
         owner.transfer(msg.value);
         seats_available=seats_available-1;
-        emit Booked(msg.sender,msg.value)
+        emit Booked(msg.sender,msg.value);
+
     }
     
 }
