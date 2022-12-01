@@ -10,10 +10,10 @@ contract Lock {
     uint seats_available;//no. of seats available
 
 
-    constructor()
+    constructor(address _owner,uint _seatavailable)
     {
         owner=payable(msg.sender);
-        seats_available=200;  //setting capacity of cinema hall
+        seats_available=_seatavailable;  //setting capacity of cinema hall
     }
 
   // check whether seats are available or not
