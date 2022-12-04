@@ -1,22 +1,21 @@
 import React,{useState} from 'react'
-
-export default function PaymentButton() {
+export default function PaymentButton(props) {
   const[amount,setamount]=useState(0)
-  const[amountpaid,setpaidamount]=useState(0)
+  //const[amountpaid,setpaidamount]=useState(0)
   const paymentHandler=e=>{
     setamount(e.target.value);
   }
-  const submitHandle=e=>{
-    e.preventDefault();
-    setpaidamount(amount);
-  } 
+  function amountSender(){
+    props.ticketbooker(amount)
+  }
+  // const submitHandle=e=>{
+  //   e.preventDefault();
+  //   setpaidamount(amount);
+  // } 
   return (
-    <div>
-      <form onSubmit={submitHandle}>
+    <div>    
       <input type='number' placeholder="amount of ether" value={amount}onChange={paymentHandler}></input>
-    <button type='submit'>pay</button>
-        </form> 
-        <h2>{amountpaid}</h2> 
+    <button className="button"type='submit' onClick={amountSender}>pay</button>
     </div>
   )
 }

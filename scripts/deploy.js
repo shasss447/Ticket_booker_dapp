@@ -6,7 +6,7 @@ async function main() {
   console.log("Deploying contracts with the account:", deployer.address); 
 
   const Lock = await hre.ethers.getContractFactory("Lock"); // Getting the Contract
-  const lock = await Lock.deploy(); //deploying the contract
+  const lock = await Lock.deploy(deployer.address,200); //deploying the contract
 
   await lock.deployed(); // waiting for the contract to be deployed
 

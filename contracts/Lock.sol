@@ -6,7 +6,7 @@ pragma solidity ^0.8.9;
 
 contract Lock {
     address payable public owner; //owner of the cinema hall
-    uint public constant  seat_price= 2 ether;//price of each seat
+    uint public constant  seat_price= 0.00002 ether;//price of each seat
     uint seats_available;//no. of seats available
 
 
