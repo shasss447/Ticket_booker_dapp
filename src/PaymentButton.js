@@ -1,21 +1,22 @@
-import React,{useState} from 'react'
-export default function PaymentButton(props) {
-  const[amount,setamount]=useState(0)
-  //const[amountpaid,setpaidamount]=useState(0)
-  const paymentHandler=e=>{
-    setamount(e.target.value);
-  }
-  function amountSender(){
-    props.ticketbooker(amount)
-  }
-  // const submitHandle=e=>{
-  //   e.preventDefault();
-  //   setpaidamount(amount);
-  // } 
+import React from 'react';
+import Popup from 'reactjs-popup';
+
+
+
+function paymentButton() {
+
+
+  
   return (
-    <div>    
-      <input type='number' placeholder="amount of ether" value={amount}onChange={paymentHandler}></input>
-    <button className="button"type='submit' onClick={amountSender}>pay</button>
+    <div>
+      <Popup trigger={<button type="button" class="btn btn-outline-primary">Pay</button>} 
+     position="center">
+      <div>You are about to do the payment</div>
+      <button>OK</button>
+      <button >Cancel</button>
+    </Popup>
     </div>
   )
 }
+
+export default paymentButton
