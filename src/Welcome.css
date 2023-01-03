@@ -1,0 +1,16 @@
+body { 
+    background-image: url("C:\Users\Shasss....wat\OneDrive\Desktop\Ticket_booker\public\images\background.jpg");
+    background-repeat: no-repeat;
+  background-size:100%;
+ }
+ .WelcomeMsg{
+    width: 90%;
+    font-size: 30px;
+    margin: auto;
+    margin-top: 8px;
+    color: white;
+    text-align: center;
+    font-family: 'Solway', serif;
+    border-bottom: 2px solid #ff0044;
+    border-radius: 11px;
+ }
