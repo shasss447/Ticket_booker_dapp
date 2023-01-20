@@ -1,5 +1,4 @@
-//import logo from './logo.svg';
-import './App.css';
+
 import {ethers} from 'ethers';
 import WelCome from './WelCome';
 import Lock from "./artifacts/contracts/Lock.sol/Lock.json"

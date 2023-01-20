@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
+
 function WalletConnectButton() {
     const [walletAddress, setWallet] = useState("");
     // useEffect(async () => {
@@ -33,43 +34,43 @@ function WalletConnectButton() {
         setWallet(walletResponse.address);
     }
     
-    function addWalletListener() {
-        if (window.ethereum) {
-          window.ethereum.on("accountsChanged", (accounts) => {
-            if (accounts.length > 0) {
-              setWallet(accounts[0]);
-            } else {
-              setWallet("");
-            }
-          });
-        } 
-      }
-    const getCurrentWalletConnected = async () => {
-        if (window.ethereum) {
-          try {
-            const addressArray = await window.ethereum.request({
-              method: "eth_accounts",
-            });
-            if (addressArray.length > 0) {
-              return {
-                address: addressArray[0],
-              };
-            } else {
-              return {
-                address: "",
-              };
-            }
-          } catch (err) {
-            return {
-              address: "",
-            };
-          }
-        } else {
-          return {
-            address: "",
-          };
-        }
-      };
+    // function addWalletListener() {
+    //     if (window.ethereum) {
+    //       window.ethereum.on("accountsChanged", (accounts) => {
+    //         if (accounts.length > 0) {
+    //           setWallet(accounts[0]);
+    //         } else {
+    //           setWallet("");
+    //         }
+    //       });
+    //     } 
+    //   }
+    // const getCurrentWalletConnected = async () => {
+    //     if (window.ethereum) {
+    //       try {
+    //         const addressArray = await window.ethereum.request({
+    //           method: "eth_accounts",
+    //         });
+    //         if (addressArray.length > 0) {
+    //           return {
+    //             address: addressArray[0],
+    //           };
+    //         } else {
+    //           return {
+    //             address: "",
+    //           };
+    //         }
+    //       } catch (err) {
+    //         return {
+    //           address: "",
+    //         };
+    //       }
+    //     } else {
+    //       return {
+    //         address: "",
+    //       };
+    //     }
+    //   };
     return (
         <div>
             <button onClick={connectWalletPressed}class="btn btn-outline-primary">
