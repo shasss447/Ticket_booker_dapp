@@ -55,15 +55,17 @@ function PaymentButton()
         console.log("data: ",data[0]);
         console.log("data: ",data[1]);
       } catch (error) {
-        console.log("Error: ", error);
+        console.log("error"+error);
       }
-      const transaction=await contract.book();
-      await transaction.wait();
+      
       try {
-        const seats = await contract.getdata();
-        console.log("data: ",seats[0]);
+        const transaction=await contract.book();
+      await transaction.wait();
       } catch (error) {
-        console.log("Error: ", error);
+        if(error.message.includes("No seats available"))
+        console.log("No seats available");
+        else
+        console.log("error"+error);
       }
 
     }

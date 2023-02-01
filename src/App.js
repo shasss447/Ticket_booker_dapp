@@ -6,7 +6,7 @@ function App() {
     <div className='App'>
         <WelCome/>
         <PaymentButton/>
-       <WalletConnectButton/> 
+       {/* <WalletConnectButton/>  */}
     </div>  
   );
 }
